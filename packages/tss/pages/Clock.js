@@ -12,5 +12,5 @@ export default function useClock({refDate, refTime, refCode}) {
 
       refCode.current.focus();
     }, config.ui.refreshTimeout);
-  }, []);
+  }, [refDate, refTime, refCode]);
 }
