@@ -14,25 +14,30 @@ export function useCheckServer() {
   let lastConnectedAt = new Date();
   useEffect(()=>{
     setInterval(async ()=>{
-      const result = await fetch('api/status', {
-        method: 'GET', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Accept': 'application/json'
-        },
-      })
-
-      if (result.ok){
-        const res = await result.json();
-        setStatus(res.status);
-        setIps(res.ips);
-        setVersion(res.version);
-        setDb(res.db);
-        lastConnectedAt = new Date();
-        //console.log("res=", res);
+      try{
+        const result = await fetch('api/status', {
+          method: 'GET', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'Accept': 'application/json'
+          },
+        })
+  
+        if (result.ok){
+          const res = await result.json();
+          setStatus(res.status);
+          setIps(res.ips);
+          setVersion(res.version);
+          setDb(res.db);
+          lastConnectedAt = new Date();
+          //console.log("res=", res);
+        }
+        else{
+          setStatus(`Disconnected since ${lastConnectedAt.toLocaleString()}`);
+        }
       }
-      else{
-        setStatus(`disconnected since ${lastConnectedAt.toLocaleString()}`);
+      catch(ex){
+        setStatus(`Failed since ${lastConnectedAt.toLocaleString()}`);
       }
     }, config.ui.checkServerTimeout);
   }, []);

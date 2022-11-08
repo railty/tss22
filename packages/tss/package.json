@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "server": "node server.js"
+    "server": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "axios": "^1.1.3",
