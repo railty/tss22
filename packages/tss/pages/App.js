@@ -175,8 +175,8 @@ export default function App() {
             <input ref={refCode} type="password" autoComplete="new-password" className="border-2 rounded-xl" 
               onKeyPress={(e)=>{
                 if (e.key === 'Enter') {
-                  //const code = refCode.current.value;
-                  const code = 'EMP08226';
+                  const code = refCode.current.value;
+                  //const code = 'EMP08226';
                   console.log(code);
                   const ms = code.match(/EMP\d+/);
                   if (ms && ms[0]) {
