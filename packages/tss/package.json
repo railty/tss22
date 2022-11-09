@@ -14,14 +14,16 @@
     "better-sqlite3": "^7.6.2",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "jsqr": "^1.4.0",
     "moment": "^2.29.4",
     "mysql2": "^2.3.3",
     "next": "13.0.0",
+    "qrcode.react": "^3.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tsslib": "file:../tsslib",
     "uuid": "^9.0.0",
-    "winston": "^3.8.2",
-    "tsslib": "file:../tsslib"
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
