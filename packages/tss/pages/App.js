@@ -175,9 +175,11 @@ export default function App() {
             <input ref={refCode} type="password" autoComplete="new-password" className="border-2 rounded-xl" 
               onKeyPress={(e)=>{
                 if (e.key === 'Enter') {
-                  const code = refCode.current.value;
-                  //const code = 'EMP08226';
+                  let code = refCode.current.value;
+                  
+                  if (process.env.NODE_ENV=="development") code = 'EMP08226';
                   console.log(code);
+                  
                   const ms = code.match(/EMP\d+/);
                   if (ms && ms[0]) {
                     submit(ms[0]);
