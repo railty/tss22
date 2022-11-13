@@ -1,9 +1,12 @@
 const { config } = require("tsslib/config");
 const { getGitVersion, getIPs } = require("tsslib");
 const { DBSQLite } = require('tsslib/db.sqlite3');
+const { logger } = require("tsslib/winston");
+
 const db = new DBSQLite();
 
 export default async function handler(req, res) {
+  logger.info("get api/status");
   const ips = getIPs();
   const version = await getGitVersion();
   let stat = await db.getDbStats();
