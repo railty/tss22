@@ -1,0 +1,52 @@
+{
+  "store": "OFMM",
+  "storeId": 2,
+  "startHour": 6,
+  "hostname": "tss-hq",
+  "host": "sync-server",
+  "port": 8000,
+  "ui":{
+    "refreshTimeout": 1000,
+    "checkServerTimeout": 6000,
+    "canvasTimeout": 3000,
+    "warningCanvasTimeout": 30000,
+    "grid": false
+  },
+  "camera": {
+    "width": 240,
+    "height": 180,
+    "path": "./camera/",
+    "enabled": true
+  },
+  "mysql":{
+    "host"     : "127.0.0.1",
+    "user"     : "tss",
+    "database" : "tss",
+    "password" : "94tss"
+  },
+  "sqlite": {
+    "punch": "./db/punch.sqlite",
+    "tss": "./db/tss.sqlite"
+  },
+  "syncServer": {
+    "port": 8000
+  },
+  "sync": {
+    "masterUrl": "http://tss-master.vpnhub.center/clock/",
+    "masterUrl2": "https://sync-server:8000/",
+    "intervalDlEmployees" : 5000,
+    "intervalUlPunches" : 10000,
+    "punchLimit": 2,
+    "employeeLimit": 25,
+    "punchExpiredDays": 7,
+    "enabled": true
+  },
+  "photoPath": "./assets/photos/",
+  "serverUrl": "http://192.168.168.226/clock/",
+  "tsse": {
+    "reconnectTimeout": 6000,
+    "url": "https://localhost:3000/",
+    "openDevTools": false,
+    "fullscreen": true
+  }
+}
