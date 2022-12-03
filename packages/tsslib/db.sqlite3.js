@@ -96,14 +96,26 @@ exports.DBSQLite = class {
     var punchId = uuidv4();
     let rc = {};
     if (employees.length > 0){
+
+      let tm = moment();
+      //let tm = moment("2022-12-03 01:12:34");
+      let dayStart = moment(tm); //make a copy of tm
+      dayStart.hour(6);
+      dayStart.minute(0);
+      dayStart.second(0);
+      dayStart.milliseconds(0);
+
+      if (tm<dayStart) dayStart.subtract(1, 'days');
+/*
       let tm = new Date();
       let dayStart = new Date(tm.getTime()); //make a copy of tm
       dayStart.setHours(config.startHour);
       dayStart.setMinutes(0);
       dayStart.setSeconds(0);
       dayStart.setMilliseconds(0);
-      dayStart = moment(dayStart).utc().format("YYYY-MM-DDTHH:mm:ss");
-      tm = moment(tm).utc().format("YYYY-MM-DDTHH:mm:ss");
+*/      
+      dayStart = dayStart.utc().format("YYYY-MM-DDTHH:mm:ss");
+      tm = tm.utc().format("YYYY-MM-DDTHH:mm:ss");
 
       let empId = employees[0].id;
       let active = employees[0].active;
