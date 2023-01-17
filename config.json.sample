@@ -29,7 +29,7 @@
   },
   "sync": {
     "masterUrl2": "http://tss-master.vpnhub.center/clock/",
-    "masterUrl": "https://sync-server:8000/",
+    "masterUrl": "http://sync-server:8000/",
     "intervalDlEmployees" : 5000,
     "intervalUlPunches" : 10000,
     "punchLimit": 2,
