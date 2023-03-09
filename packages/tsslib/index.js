@@ -1,4 +1,3 @@
-const fs = require('fs/promises');
 const moment = require('moment');
 const child_process_exec = require('child_process').exec;
 const util = require('util');
