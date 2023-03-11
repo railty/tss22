@@ -182,5 +182,11 @@ exports.DBSQLite = class {
 
     return rc;
   }
+
+  upsertStore(id, name){
+    this.tss.prepare('insert or ignore into stores(id, store_number, name) values (?, ?, ?)').run([id, id, name]);
+    return 0;
+  }
+
 }
 

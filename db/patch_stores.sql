@@ -1,1 +1,1 @@
-insert into stores (id, store_number, name) values(16, 580, 'Warehouse');
+insert or ignore into stores (id, store_number, name) values(16, 580, 'Warehouse');
