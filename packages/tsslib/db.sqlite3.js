@@ -29,6 +29,29 @@ exports.DBSQLite = class {
     }
   }
 
+  upsertStore(store){
+    let rows = this.tss.prepare(`SELECT * from stores where id = ${store.id}`).all();
+    if (rows.length>0){
+      console.log(`update ${store.name} ${store.updated_at}`);
+      let res = this.tss.prepare('update stores set store_number = ?, name = ?, updated_at = ? where id = ?')
+        .run(store.store_number, store.name, store.updated_at, store.id);
+      //console.log(res);
+    }
+    else{
+      console.log(`insert ${store.name} ${store.updated_at}`);
+      let res = this.tss.prepare('insert into stores(id, store_number, name, updated_at) values(?, ?, ?, ?)')
+        .run(store.store.id, store.store_number, store.name, store.updated_at);
+      //console.log(res);
+    }
+  }
+
+  getStoreTS(){
+    let ts = this.tss.prepare('SELECT max(updated_at) as updated_at from stores').get();
+    let updated_since = ts.updated_at || new Date('2000-01-01');
+    console.log(updated_since);
+    return updated_since;
+  }
+
   upsertEmployee(emp){
     let rows = this.tss.prepare(`SELECT * from employees where id = ${emp.id}`).all();
     if (rows.length>0){

@@ -8,6 +8,7 @@ const fs = require('fs');
 const { config } = require('tsslib/config');
 
 var indexRouter = require('./routes/index');
+var storesRouter = require('./routes/stores');
 var employeesRouter = require('./routes/employees');
 var punchesRouter = require('./routes/punches');
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/stores', storesRouter);
 app.use('/employees', employeesRouter);
 app.use('/punches', punchesRouter);
 

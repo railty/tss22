@@ -10,6 +10,24 @@ class DBMySQL{
     this.dbConfig = config.mysql;
   }
 
+  async getStores(updated_since){
+    logger.info('updated_since from client (in utc) = ' + updated_since);
+    updated_since = moment(updated_since).format("YYYY-MM-DDTHH:mm:ss")
+    logger.info('updated_since in local zone = ' + updated_since);
+
+    const conn = await mysql.createConnection(this.dbConfig);
+    
+    let sql = `SELECT id, store_number, name, updated_at from stores 
+      WHERE updated_at > '${updated_since}' 
+      order by updated_at`;
+
+    logger.info(sql);
+    let [stores, fields] = await conn.query(sql);
+    await conn.end();
+
+    return stores;
+  }
+
   async getEmployees(updated_since, req_employee_limit){
     /*
     the timezone in sqlite is always UTC,

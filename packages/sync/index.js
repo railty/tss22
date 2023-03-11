@@ -18,6 +18,33 @@ const agent = new https.Agent({
     ca: ca_file
 });
 
+async function downloadStores(){
+  let ts = db.getStoreTS();
+  try{
+    let res = await axios.get(`${config.sync.masterUrl}stores`, {
+      params: {
+        updated_since: ts,
+      },
+      headers: {Authorization: 'Auth'},
+      maxContentLength: 50 *1024 * 1024,
+      maxBodyLength: 50 *1024 * 1024,
+      responseEncoding: 'utf8',
+      timeout: 5 * 60 * 1000,
+      httpsAgent : agent,
+    });
+
+    let stores = res.data.stores;
+    logger.info(`downloading stores since ${ts}`);
+    logger.info(`downloaded ${stores.length} stores`);
+    for (let store of stores){
+      db.upsertStore(store);
+    }
+  }
+  catch(e){
+    logger.info(e.toString());
+  }
+}
+
 async function downloadEmployees(){
   let ts = db.getEmployeeTS();
   try{
@@ -98,6 +125,7 @@ async function fastSync2(){
 }
 
 async function fastSync(){
+  await Utils.downloadStores();
   await Utils.downloadEmployees();
   //await Utils.uploadPunches();
 }
