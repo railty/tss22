@@ -12,3 +12,7 @@ install windows terminal from ms store
 	copy to tsse\win32-build\
 4.
    sqlite3 tss.sqlite < patch-store.sql	
+
+ghp_
+wYtvSKWnze7bzMK2nu
+C7bOP62BA1c92Rghu1
