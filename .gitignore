@@ -9,6 +9,8 @@ db/*.sqlite
 /config.json
 logs/*.log
 
+packages/tsse/tsse-linux-x64/
+
 /node_modules
 /.pnp
 .pnp.js

@@ -1,0 +1,6 @@
+{
+  "reconnectTimeout": 6000,
+  "url": "https://localhost:3000/",
+  "openDevTools": false,
+  "fullscreen": true
+}
